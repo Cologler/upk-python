@@ -39,7 +39,6 @@ def collect_pkgs(d: str):
 
 def update_apks(d: str):
     pkgs = collect_pkgs(d)
-    # todo: sort
     for pkg in pkgs:
         logger = root_logger.getChild(repr(pkg))
         provider = ApkPure(logger)
@@ -73,9 +72,8 @@ def main(argv=None):
         if args:
             update_apks(args[0])
 
-    except Exception: # pylint: disable=W0703
+    except: # pylint: disable=W0703
         traceback.print_exc()
-        if sys.stderr.isatty(): input('wait for read...')
 
 if __name__ == '__main__':
     main()
