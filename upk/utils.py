@@ -17,6 +17,7 @@ def download(url: str, path: str, logger: logging.Logger):
     if os.path.isdir(path):
         cd = r.headers['Content-Disposition']
         fn = cd.removeprefix('attachment; filename=').removeprefix('"').removesuffix('"')
+        fn = fn.replace(chr(194), '')
         path = os.path.join(path, fn)
     else:
         fn = os.path.basename(path)
