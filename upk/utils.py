@@ -13,11 +13,13 @@ import requests
 import atomicwrites
 
 def download(url: str, path: str, logger: logging.Logger):
+    logger.debug(f'download url is: {url}')
+
     r = requests.get(url=url, stream=True)
     if os.path.isdir(path):
         cd = r.headers['Content-Disposition']
         fn = cd.removeprefix('attachment; filename=').removeprefix('"').removesuffix('"')
-        fn = fn.replace(chr(194), '')
+        fn = fn.translate(dict.fromkeys([c for c in range(128,255)], '')).replace('  ', ' ')
         path = os.path.join(path, fn)
     else:
         fn = os.path.basename(path)
