@@ -41,6 +41,7 @@ class ApkPure:
                     arch=cols[1].text,
                     url=BASE_URL+cols[4].select_one('a')['href']
                 ))
+        self._logger.debug(f'found {len(variants)} variants: {[v["arch"] for v in variants]}.')
         return variants
 
     def _get_latest_version_info(self, versions_url: str):
