@@ -1,2 +1,5 @@
-# upk-python
- update apk on local dir from apkpure
+# upk
+
+Update apk on local dir from apkpure.
+
+**Did not work any more.**
